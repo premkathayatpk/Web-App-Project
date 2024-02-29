@@ -14,12 +14,13 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="index.css">
 
+
 </head>
 
 <body>
   <header>
     <div class="logo_container">
-      <a href="#"><img class="shoe_logo" src="images/logo.png" alt="Logo"></a>
+      <a href="index.html"><img class="shoe_logo" src="images/logo.png" alt="Logo"></a>
     </div>
 
     <div class="search_bar">
@@ -28,12 +29,12 @@
     </div>
 
     <nav class="nav_bar">
-      <a href="#">Home</a>
-      <a href="#">Products</a>
-      <a href="#">Men</a>
-      <a href="#">Women</a>
-      <a href="#">Kids</a>
-      <a href="#">Contact Us</a>
+      <a href="#home">Home</a>
+      <a href="#product">Products</a>
+      <a href="#men">Men</a>
+      <a href="#women">Women</a>
+      <a href="#kids">Kids</a>
+      <a href="#contact">Contact Us</a>
     </nav>
 
 
@@ -55,99 +56,233 @@
 
 
   <!-- Main section -->
-  <main>
-    <div class="banner_container">
-      <img src="images/banner1.jpg" alt="banner image">
+  <div class="main">
+    <!-- Home page -->
+    <div class="show" id="home">
+      <div class=" banner_container">
+        <img src="images/banner1.jpg" alt="banner image">
+      </div>
+
+
+      <h1>Feature Items</h1>
+      <hr />
+      <div class="items-container">
+
+        <div class="item-container">
+          <img class="item-image" src="images/photo/1.jpg" alt="item image">
+          <div class="rating"> ⭐ | 1.2k </div>
+          <div class="company-name">Nike</div>
+          <div class="item-name">Jodan Nike</div>
+          <div class="price">
+            Rs. 2500
+          </div>
+          <button class="btn-add-cart" onclick="addToBag(${item.id})">Add to Cart</button>
+        </div>
+
+        <div class="item-container">
+          <img class="item-image" src="images/photo/2.jpg" alt="item image">
+          <div class="rating"> ⭐ | 1.2k </div>
+          <div class="company-name">Nike</div>
+          <div class="item-name">Jodan Nike</div>
+          <div class="price">
+            Rs. 2500
+          </div>
+          <button class="btn-add-cart" onclick="addToBag(${item.id})">Add to Cart</button>
+        </div>
+
+        <div class="item-container">
+          <img class="item-image" src="images/photo/3.jpg" alt="item image">
+          <div class="rating"> ⭐ | 1.2k </div>
+          <div class="company-name">Nike</div>
+          <div class="item-name">Jodan Nike</div>
+          <div class="price">
+            Rs. 2500
+          </div>
+          <button class="btn-add-cart" onclick="addToBag(${item.id})">Add to Cart</button>
+        </div>
+
+        <div class="item-container">
+          <img class="item-image" src="images/photo/4.jpg" alt="item image">
+          <div class="rating"> ⭐ | 1.2k </div>
+          <div class="company-name">Nike</div>
+          <div class="item-name">Jodan Nike</div>
+          <div class="price">
+            Rs. 2500
+          </div>
+          <button class="btn-add-cart" onclick="addToBag(${item.id})">Add to Cart</button>
+        </div>
+
+
+        <div class="item-container">
+          <img class="item-image" src="images/photo/5.jpg" alt="item image">
+          <div class="rating"> ⭐ | 1.2k </div>
+          <div class="company-name">Nike</div>
+          <div class="item-name">Jodan Nike</div>
+          <div class="price">
+            Rs. 2500
+          </div>
+          <button class="btn-add-cart" onclick="addToBag(${item.id})">Add to Cart</button>
+        </div>
+
+
+        <div class="item-container">
+          <img class="item-image" src="images/photo/6.jpg" alt="item image">
+          <div class="rating"> ⭐ | 1.2k </div>
+          <div class="company-name">Nike</div>
+          <div class="item-name">Jodan Nike</div>
+          <div class="price">
+            Rs. 2500
+          </div>
+          <button class="btn-add-cart" onclick="addToBag(${item.id})">Add to Cart</button>
+        </div>
+
+
+        <div class="item-container">
+          <img class="item-image" src="images/photo/7.jpg" alt="item image">
+          <div class="rating"> ⭐ | 1.2k </div>
+          <div class="company-name">Nike</div>
+          <div class="item-name">Jodan Nike</div>
+          <div class="price">
+            Rs. 2500
+          </div>
+          <button class="btn-add-cart" onclick="">Add to Cart</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Product page -->
+    <div class="show" id="product">
+
+      <div class="items-container">
+
+        <div class="item-container">
+          <img class="item-image" src="images/photo/1.jpg" alt="item image">
+          <div class="rating"> ⭐ | 1.2k </div>
+          <div class="company-name">Nike</div>
+          <div class="item-name">Jodan Nike</div>
+          <div class="price">
+            Rs. 2500
+          </div>
+          <button class="btn-add-cart" onclick="addToBag(${item.id})">Add to Cart</button>
+        </div>
+
+        <div class="item-container">
+          <img class="item-image" src="images/photo/2.jpg" alt="item image">
+          <div class="rating"> ⭐ | 1.2k </div>
+          <div class="company-name">Nike</div>
+          <div class="item-name">Jodan Nike</div>
+          <div class="price">
+            Rs. 2500
+          </div>
+          <button class="btn-add-cart" onclick="addToBag(${item.id})">Add to Cart</button>
+        </div>
+
+        <div class="item-container">
+          <img class="item-image" src="images/photo/3.jpg" alt="item image">
+          <div class="rating"> ⭐ | 1.2k </div>
+          <div class="company-name">Nike</div>
+          <div class="item-name">Jodan Nike</div>
+          <div class="price">
+            Rs. 2500
+          </div>
+          <button class="btn-add-cart" onclick="addToBag(${item.id})">Add to Cart</button>
+        </div>
+
+        <div class="item-container">
+          <img class="item-image" src="images/photo/4.jpg" alt="item image">
+          <div class="rating"> ⭐ | 1.2k </div>
+          <div class="company-name">Nike</div>
+          <div class="item-name">Jodan Nike</div>
+          <div class="price">
+            Rs. 2500
+          </div>
+          <button class="btn-add-cart" onclick="addToBag(${item.id})">Add to Cart</button>
+        </div>
+
+
+        <div class="item-container">
+          <img class="item-image" src="images/photo/5.jpg" alt="item image">
+          <div class="rating"> ⭐ | 1.2k </div>
+          <div class="company-name">Nike</div>
+          <div class="item-name">Jodan Nike</div>
+          <div class="price">
+            Rs. 2500
+          </div>
+          <button class="btn-add-cart" onclick="addToBag(${item.id})">Add to Cart</button>
+        </div>
+
+
+        <div class="item-container">
+          <img class="item-image" src="images/photo/6.jpg" alt="item image">
+          <div class="rating"> ⭐ | 1.2k </div>
+          <div class="company-name">Nike</div>
+          <div class="item-name">Jodan Nike</div>
+          <div class="price">
+            Rs. 2500
+          </div>
+          <button class="btn-add-cart" onclick="addToBag(${item.id})">Add to Cart</button>
+        </div>
+
+
+        <div class="item-container">
+          <img class="item-image" src="images/photo/7.jpg" alt="item image">
+          <div class="rating"> ⭐ | 1.2k </div>
+          <div class="company-name">Nike</div>
+          <div class="item-name">Jodan Nike</div>
+          <div class="price">
+            Rs. 2500
+          </div>
+          <button class="btn-add-cart" onclick="">Add to Cart</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Men page -->
+    <div class="show" id="men">Mens Products</div>
+
+    <!-- Women page -->
+    <div class="show" id="women">Womens Products</div>
+
+
+    <!-- Kids page -->
+    <div class="show" id="kids">Kids Products</div>
+
+
+    <!-- Contact Us section -->
+    <div class="show" id="contact">
+      <div class="contact-banner">
+        <img src="images/contactus.JPG" alt="Contact Us">
+      </div>
+      <form method="post">
+        <div class="contact-email">
+          Email:<br>
+          <input type="email" placeholder="Email" required>
+        </div>
+
+        <div class="contact-message">
+          Message:
+          <br>
+          <textarea name="message" id="message" placeholder="Type your Message." cols="30" rows="10"></textarea>
+        </div>
+        <div class="contact-button">
+          <button class="btn btn-submit">Submit </button>
+          <button class="btn btn-cancle">Cancle</button>
+
+        </div>
+
+
+
+
+      </form>
     </div>
 
 
-
-    <h1>Feature Items</h1>
-    <hr />
-    <div class="items-container">
-
-      <div class="item-container">
-        <img class="item-image" src="images/photo/1.jpg" alt="item image">
-        <div class="rating"> ⭐ | 1.2k </div>
-        <div class="company-name">Nike</div>
-        <div class="item-name">Jodan Nike</div>
-        <div class="price">
-          Rs. 2500
-        </div>
-        <button class="btn-add-cart" onclick="addToBag(${item.id})">Add to Cart</button>
-      </div>
-
-      <div class="item-container">
-        <img class="item-image" src="images/photo/2.jpg" alt="item image">
-        <div class="rating"> ⭐ | 1.2k </div>
-        <div class="company-name">Nike</div>
-        <div class="item-name">Jodan Nike</div>
-        <div class="price">
-          Rs. 2500
-        </div>
-        <button class="btn-add-cart" onclick="addToBag(${item.id})">Add to Cart</button>
-      </div>
-
-      <div class="item-container">
-        <img class="item-image" src="images/photo/3.jpg" alt="item image">
-        <div class="rating"> ⭐ | 1.2k </div>
-        <div class="company-name">Nike</div>
-        <div class="item-name">Jodan Nike</div>
-        <div class="price">
-          Rs. 2500
-        </div>
-        <button class="btn-add-cart" onclick="addToBag(${item.id})">Add to Cart</button>
-      </div>
-
-      <div class="item-container">
-        <img class="item-image" src="images/photo/4.jpg" alt="item image">
-        <div class="rating"> ⭐ | 1.2k </div>
-        <div class="company-name">Nike</div>
-        <div class="item-name">Jodan Nike</div>
-        <div class="price">
-          Rs. 2500
-        </div>
-        <button class="btn-add-cart" onclick="addToBag(${item.id})">Add to Cart</button>
-      </div>
+  </div>
 
 
-      <div class="item-container">
-        <img class="item-image" src="images/photo/5.jpg" alt="item image">
-        <div class="rating"> ⭐ | 1.2k </div>
-        <div class="company-name">Nike</div>
-        <div class="item-name">Jodan Nike</div>
-        <div class="price">
-          Rs. 2500
-        </div>
-        <button class="btn-add-cart" onclick="addToBag(${item.id})">Add to Cart</button>
-      </div>
-
-
-      <div class="item-container">
-        <img class="item-image" src="images/photo/6.jpg" alt="item image">
-        <div class="rating"> ⭐ | 1.2k </div>
-        <div class="company-name">Nike</div>
-        <div class="item-name">Jodan Nike</div>
-        <div class="price">
-          Rs. 2500
-        </div>
-        <button class="btn-add-cart" onclick="addToBag(${item.id})">Add to Cart</button>
-      </div>
-
-
-      <div class="item-container">
-        <img class="item-image" src="images/photo/7.jpg" alt="item image">
-        <div class="rating"> ⭐ | 1.2k </div>
-        <div class="company-name">Nike</div>
-        <div class="item-name">Jodan Nike</div>
-        <div class="price">
-          Rs. 2500
-        </div>
-        <button class="btn-add-cart" onclick="addToBag(${item.id})">Add to Cart</button>
-      </div>
-
-    </div>
-  </main>
+  </div>
 
 
 

@@ -5,6 +5,10 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: whitesmoke;
+}
+
 /* -----------Heading-------------- */
 header {
   background-color: #ffffff;
@@ -89,6 +93,15 @@ header {
 }
 
 /* ---------Main section--------- */
+.main .show {
+  display: none;
+}
+
+.main .show:target {
+  display: block;
+}
+
+
 .banner_container {
   margin: 30px 0;
   width: 100%;
@@ -105,7 +118,7 @@ header {
 }
 
 /* -----------Products Feature--------- */
-main h1 {
+.main h1 {
   text-align: center;
 }
 
@@ -218,3 +231,80 @@ main h1 {
   padding: 15px;
 
 }
+
+
+/* ----------Contact Us ---------- */
+#contact {
+  margin: 20px;
+  text-align: center;
+
+}
+
+
+.contact-banner {
+  margin: 30px 0;
+  width: 100%;
+  height: 300px;
+  text-align: center;
+
+}
+
+.contact-banner img {
+  width: 90%;
+  height: 100%;
+
+}
+
+.contact-email,
+.contact-message {
+  margin: 20px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.contact-email input {
+  margin-top: 10px;
+  line-height: 20px;
+  width: 400px;
+  font-size: 20px;
+  padding: 3px 5px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+}
+
+.contact-message textarea {
+  margin-top: 10px;
+  width: 400px;
+  height: 300px;
+  font-size: 20px;
+  padding: 3px 5px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+}
+
+.contact-button .btn-submit {
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 5px;
+  text-align: center;
+  width: 300px;
+  color: #ffffff;
+  background-color: #49afcd;
+  border: none;
+  border-radius: 5px;
+}
+
+.contact-button .btn-cancle {
+  font-size: 20px;
+  font-weight: 500;
+  padding: 5px;
+  text-align: center;
+  width: 100px;
+  background-color: red;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+}
+
+/* product page */
