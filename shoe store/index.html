@@ -45,7 +45,7 @@
       </a>
 
 
-      <a class="action_container" href="#">
+      <a class="action_container" href="#mycart">
         <i class="fa-solid fa-cart-arrow-down"></i>
         <span class="action_name">My Cart</span>
         <span class="bag-item-count">0</span>
@@ -76,7 +76,7 @@
           <div class="price">
             Rs. 2500
           </div>
-          <button class="btn-add-cart" onclick="addToBag(${item.id})">Add to Cart</button>
+          <button class="btn-add-cart" onclick="">Add to Cart</button>
         </div>
 
         <div class="item-container">
@@ -87,7 +87,7 @@
           <div class="price">
             Rs. 2500
           </div>
-          <button class="btn-add-cart" onclick="addToBag(${item.id})">Add to Cart</button>
+          <button class="btn-add-cart" onclick="">Add to Cart</button>
         </div>
 
         <div class="item-container">
@@ -98,7 +98,7 @@
           <div class="price">
             Rs. 2500
           </div>
-          <button class="btn-add-cart" onclick="addToBag(${item.id})">Add to Cart</button>
+          <button class="btn-add-cart" onclick="">Add to Cart</button>
         </div>
 
         <div class="item-container">
@@ -109,7 +109,7 @@
           <div class="price">
             Rs. 2500
           </div>
-          <button class="btn-add-cart" onclick="addToBag(${item.id})">Add to Cart</button>
+          <button class="btn-add-cart" onclick="">Add to Cart</button>
         </div>
 
 
@@ -240,11 +240,83 @@
     </div>
 
     <!-- Men page -->
-    <div class="show" id="men">Mens Products</div>
+    <div class="show" id="men">
+      <h1>Mens Products</h1>
+      <div class="items-container">
+
+        <div class="item-container">
+          <img class="item-image" src="images/photo/1.jpg" alt="item image">
+          <div class="rating"> ⭐ | 1.2k </div>
+          <div class="company-name">Nike</div>
+          <div class="item-name">Jodan Nike</div>
+          <div class="price">
+            Rs. 2500
+          </div>
+          <button class="btn-add-cart" onclick="">Add to Cart</button>
+        </div>
+        <div class="item-container">
+          <img class="item-image" src="images/photo/1.jpg" alt="item image">
+          <div class="rating"> ⭐ | 1.2k </div>
+          <div class="company-name">Nike</div>
+          <div class="item-name">Jodan Nike</div>
+          <div class="price">
+            Rs. 2500
+          </div>
+          <button class="btn-add-cart" onclick="">Add to Cart</button>
+        </div>
+
+        <div class="item-container">
+          <img class="item-image" src="images/photo/2.jpg" alt="item image">
+          <div class="rating"> ⭐ | 1.2k </div>
+          <div class="company-name">Nike</div>
+          <div class="item-name">Jodan Nike</div>
+          <div class="price">
+            Rs. 2500
+          </div>
+          <button class="btn-add-cart" onclick="">Add to Cart</button>
+        </div>
+      </div>
+    </div>
 
     <!-- Women page -->
-    <div class="show" id="women">Womens Products</div>
+    <div class="show" id="women">
+      <h1>Womens Products</h1>
+      <div class="items-container">
 
+        <div class="item-container">
+          <img class="item-image" src="images/women/1.png" alt="item image">
+          <div class="rating"> ⭐ | 1.2k </div>
+          <div class="company-name">Nike</div>
+          <div class="item-name">Jodan Nike</div>
+          <div class="price">
+            Rs. 2500
+          </div>
+          <button class="btn-add-cart" onclick="">Add to Cart</button>
+        </div>
+
+        <div class="item-container">
+          <img class="item-image" src="images/women/2.png" alt="item image">
+          <div class="rating"> ⭐ | 1.2k </div>
+          <div class="company-name">Nike</div>
+          <div class="item-name">Jodan Nike</div>
+          <div class="price">
+            Rs. 2500
+          </div>
+          <button class="btn-add-cart" onclick="">Add to Cart</button>
+        </div>
+
+        <div class="item-container">
+          <img class="item-image" src="images/women/3.png" alt="item image">
+          <div class="rating"> ⭐ | 1.2k </div>
+          <div class="company-name">Nike</div>
+          <div class="item-name">Jodan Nike</div>
+          <div class="price">
+            Rs. 2500
+          </div>
+          <button class="btn-add-cart" onclick="">Add to Cart</button>
+        </div>
+      </div>
+    </div>
 
     <!-- Kids page -->
     <div class="show" id="kids">Kids Products</div>
@@ -279,6 +351,53 @@
     </div>
 
 
+    <div class="show" id="mycart">
+      <h1>My Cart</h1>
+      <form>
+        <table>
+          <tr>
+            <th>Image</th>
+            <th>Product Name</th>
+            <th>Size</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Add</th>
+            <th>Remove</th>
+            <th>Subtotal</th>
+
+          </tr>
+          <tr>
+            <td><img src="images/women/1.png" alt=""></td>
+            <td>Goldstar</td>
+            <td>8</td>
+            <td>1</td>
+            <td>2500</td>
+            <td>+</td>
+            <td>-</td>
+            <td>2500</td>
+          </tr>
+          <tr>
+            <td><img src="images/men/1.png" alt=""></td>
+            <td>Nike</td>
+            <td>9</td>
+            <td>2</td>
+            <td>3000</td>
+            <td>+</td>
+            <td>-</td>
+            <td>6000</td>
+          </tr>
+        </table>
+        <div class="totalAmount">
+          <h3> Total Amount(Rs): </h3>
+          <button>Empty Cart</button>
+        </div>
+        <div class='purchase'>
+          <a href='#home'>Continue Shopping</a>
+          <button>Purchase</button>
+        </div>
+
+      </form>
+    </div>
   </div>
 
 

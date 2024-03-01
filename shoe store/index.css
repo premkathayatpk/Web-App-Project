@@ -136,6 +136,7 @@ header {
 .item-container {
   margin-top: 5px;
   width: 250px;
+  height: 350px;
   margin: 10px;
   border: 1px solid lightgray;
 
@@ -143,6 +144,7 @@ header {
 
 .item-image {
   width: 100%;
+  height: 60%;
 }
 
 .rating {
@@ -308,3 +310,77 @@ header {
 }
 
 /* product page */
+
+/* Mucart page */
+#mycart {
+  text-align: center;
+  margin: 20px;
+  background-color: #ffffff;
+
+}
+
+#mycart table {
+  margin: 10px 10px 10px 35px;
+  width: 90%;
+  font-size: 1.5rem;
+}
+
+#mycart table th,
+td {
+  padding: 10px;
+  border-bottom: 1px solid lightblue;
+}
+
+#mycart table img {
+  height: 55px;
+  width: 80px;
+}
+
+.totalAmount {
+  display: flex;
+  justify-content: end;
+  padding-right: 50px;
+  margin: 10px;
+}
+
+.totalAmount h3 {
+  text-align: left;
+  font-size: 25px;
+  width: 500px;
+}
+
+.totalAmount button {
+  padding: 5px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: #da4f49;
+  border: none;
+  border-radius: 5px;
+  width: 100px;
+  cursor: pointer;
+}
+
+.purchase {
+  margin: 20px;
+  text-align: end;
+  padding-right: 50px;
+}
+
+.purchase button,
+.purchase a {
+  background-color: #282c3f;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 10px 15px 10px 15px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+}
+
+.purchase a {
+  text-decoration: none;
+}
