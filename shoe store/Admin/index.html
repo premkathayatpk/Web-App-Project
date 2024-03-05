@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="admin.css">
+
+</head>
+
+<body>
+
+    <!-- navbar -->
+
+    <div class="navbar">
+        <div class="nav-logo">
+            <a href="#" onclick="showPage('home')">
+                <span class="icon">
+                    <img src="image/logo.png" alt="icone">
+                </span>
+                <br>
+                <span class="logo-title"> Shoe Store</span>
+            </a>
+        </div>
+
+        <div class="nav-items">
+            <a href="#" onclick="showPage('home')">
+                <span class="icon">
+                    <i class="fa-solid fa-house"></i> </span>
+                Dashboard
+            </a>
+            <a href="#" onclick="showPage('product')">
+                <span class=" icon">
+                    <i class="fa-solid fa-layer-group"></i> </span>
+                Product
+            </a>
+
+            <a href="#" onclick="showPage('order')">
+                <span class="icon">
+                    <i class="fa-solid fa-cart-shopping"></i> </span>
+                Order
+            </a>
+
+
+            <a href="#" onclick="showPage('customer')">
+                <span class="icon">
+                    <i class="fa-solid fa-users"></i>
+                </span>
+                Customer
+            </a>
+
+            <a href="#" onclick="showPage('report')">
+                <span class="icon">
+                    <i class="fa-solid fa-book"></i> </span>
+                Report
+            </a>
+
+
+
+            <a href="#">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+            </a>
+        </div>
+    </div>
+
+
+    <!-- Header section -->
+    <header class="header">
+        <div class="menu-icon">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+
+
+        <div class="search">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Search here">
+
+
+        </div>
+
+        <div class="user">
+            <img src="image/prem.jpg" alt="Admin">
+        </div>
+    </header>
+
+
+
+
+    <!-- main section -->
+    <div class="main">
+
+        <!-- Home page -->
+        <div id="home" class="page">
+            <!-- ======================= Cards ================== -->
+
+            <div class="card">
+                <div>
+                    <div class="numbers">1,504</div>
+                    <div class="cardName"> Total Sales</div>
+                </div>
+
+                <div class="iconBx">
+                    <ion-icon name="eye-outline"></ion-icon>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="numbers">80</div>
+                    <div class="cardName"> Daily Sales</div>
+                </div>
+
+                <div class="iconBx">
+                    <ion-icon name="cart-outline"></ion-icon>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="numbers">23</div>
+                    <div class="cardName">New Order</div>
+                </div>
+
+                <div class="iconBx">
+                    <ion-icon name="chatbubbles-outline"></ion-icon>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="numbers">$7,842</div>
+                    <div class="cardName">Earning</div>
+                </div>
+
+                <div class="iconBx">
+                    <ion-icon name="cash-outline"></ion-icon>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!-- --Customer page---------- -->
+        <div id="customer" class="page">
+
+            <h1>Customers</h1>
+
+            <div class="customer-search">
+                <input type="text" placeholder="search product here">
+            </div>
+
+            <div class="customer-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Province</th>
+                            <th>Zipcode</th>
+                            <th>Mobile</th>
+                            <th>Telephone</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <?php
+                        $query = mysqli_query($conn, "SELECT * FROM `customer`") or die(mysqli_error());
+                        while($fetch = mysqli_fetch_array($query))
+                            {
+                    ?>
+                    <tr>
+                        <td>
+                            <?php echo $fetch['firstname'];?>&nbsp;
+                            <?php echo $fetch['mi'];?>&nbsp;
+                            <?php echo  $fetch['lastname'];?>
+                        </td>
+                        <td>
+                            <?php echo $fetch['address']?>
+                        </td>
+                        <td>
+                            <?php echo $fetch['country']?>
+                        </td>
+                        <td>
+                            <?php echo $fetch['zipcode']?>
+                        </td>
+                        <td>
+                            <?php echo $fetch['mobile']?>
+                        </td>
+                        <td>
+                            <?php echo $fetch['telephone']?>
+                        </td>
+                        <td>
+                            <?php echo $fetch['email']?>
+                        </td>
+                    </tr>
+                    <?php
+                        }
+                    ?>
+                </table>
+            </div>
+
+        </div>
+
+        <!-- Order page -->
+        <div id="order" class="page">
+
+            <h1>Order Lists</h1>
+            <div class="order-search">
+                <input type="text" placeholder="search product here">
+            </div>
+            <table border="1px">
+                <tr>
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Customer Name</th>
+                    <th>Total Amount</th>
+                    <th>Order Status</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Nike</td>
+                    <td>20</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Anuj Shrestha</td>
+                    <td>50</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Prem Kathayat</td>
+                    <td>20</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Anuj Shrestha</td>
+                    <td>50</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Product page -->
+
+        <div id="product" class="page">
+            <h1>Products</h1>
+            <div class="add-product">
+                <form method="post">
+
+                    <input type="file" name="product_image" required>
+
+                    <br>
+
+
+                    <input type="text" name="product_name" placeholder="Product Name" required>
+                    <br>
+                    <input type="text" name="product_price" placeholder="Price" required>
+
+                    <br>
+                    <input type="text" name="product_size" placeholder="Size" required>
+                    <br>
+                    <input type="text" name="brand" placeholder="Brand Name	" required>
+
+                    <br>
+                    <input type="number" name="qty" placeholder="No. of Stock" required>
+                    <br>
+                    <input type="text" name="category" placeholder="category" required>
+
+                    <div class="add-button">
+                        <input type="submit" name="add" value="Add">
+
+                        <button>Close</button>
+                    </div>
+                </form>
+            </div>
+
+
+            <div class="product-search">
+                <input type="text" placeholder="search product here">
+            </div>
+
+            <div class="product-table">
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Product Image</th>
+                            <th>Product Name</th>
+                            <th>Product Price</th>
+                            <th>Product Sizes</th>
+                            <th>No. of Stock</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+                    </tbody>
+            </div>
+
+        </div>
+
+        <!-- report page -->
+
+        <div id="report" class="page">
+            <h1>
+                Sales Report
+            </h1>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Customer Name</th>
+                    <th>Total Amount</th>
+                </tr>
+                <tr>Total: </tr>
+            </table>
+        </div>
+
+
+    </div>
+
+    <script src="admin.js">
+
+    </script>
+</body>
+
+</html>
