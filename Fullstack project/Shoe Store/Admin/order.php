@@ -1,3 +1,9 @@
+<?php
+require 'header.php'
+?>
+
+
+
 <h1>Order Lists</h1>
             <div class="order-search">
                 <input type="text" placeholder="search product here">

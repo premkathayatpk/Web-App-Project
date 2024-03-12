@@ -1,4 +1,12 @@
-<?php require 'connection.php'?>
+
+
+<?php
+require 'header.php'
+?>
+
+<?php
+include 'connection.php';
+?>
     <h1>Products</h1>
 
 
@@ -7,7 +15,7 @@
 
 
     <div id="add-product" class="hidden productAdd">
-        <form method="post">
+        <form method="post" action="">
 
             <input type="file" name="product_image" required>
 
@@ -28,7 +36,8 @@
             <br>
 
 
-            Category: <select>
+            Category: <select name="category">
+            <option disabled selected value="">Choose a category</option>
                 <option>Men</option>
                 <option>Women</option>
                 <option>Kids</option>
@@ -39,10 +48,57 @@
             <div class="add-button">
                 <input type="submit" name="add" value="Add">
 
-                <button>Close</button>
+                <button>Clear</button>
             </div>
         </form>
     </div>
+
+   
+		<?php
+			if (isset($_POST['add']))
+				{
+					$product_code = $_POST['product_code'];
+					$product_name = $_POST['product_name'];
+					$product_price = $_POST['product_price'];
+					$product_size = $_POST['product_size'];
+					$brand = $_POST['brand'];
+					$category = $_POST['category'];
+					$qty = $_POST['qty'];
+					$code = rand(0,98987787866533499);
+						
+								$name = $code.$_FILES["product_image"] ["name"];
+								$type = $_FILES["product_image"] ["type"];
+								$size = $_FILES["product_image"] ["size"];
+								$temp = $_FILES["product_image"] ["tmp_name"];
+								$error = $_FILES["product_image"] ["error"];
+										
+								if ($error > 0){
+									die("Error uploading file! Code $error.");}
+								else
+								{
+									if($size > 30000000000) //conditions for the file
+									{
+										die("Format is not allowed or file size is too big!");
+									}
+									else
+									{
+										move_uploaded_file($temp,"uplodesimg/".$name);
+			
+
+				$q1 = mysqli_query($conn, "INSERT INTO product ( product_id,product_name, product_price, product_size, product_image, brand, category)
+				VALUES ('$product_code','$product_name','$product_price','$product_size','$name', '$brand', '$category')");
+				
+				$q2 = mysqli_query($conn, "INSERT INTO stock ( product_id, qty) VALUES ('$product_code','$qty')");
+				
+				header ("location:admin_product.php");
+			}}
+		}
+
+				?>
+
+
+
+
     <div class="product-search">
         <input type="text" placeholder="search product here">
     </div>

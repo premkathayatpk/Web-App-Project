@@ -1,3 +1,7 @@
+<?php
+require 'header.php'
+?>
+
 <h1>Customers</h1>
 
 <div class="customer-search">
