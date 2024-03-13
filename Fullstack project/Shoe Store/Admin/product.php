@@ -28,16 +28,11 @@ include 'connection.php';
     <div id="add-product" class="hidden productAdd">
         <form method="post" action="">
 
-            <input type="file" name="product_image"  required>
+            <input type="file" name="photo" id="photo"  required/>
+           
 
             <br>
-            <?php include("random_id.php");
-            $code = createRandomPassword();
- 
-							echo `<tr>
-								<td><input type="hidden" name="product_code" value="'.$code.'" required></td>
-							<tr/>`;
-							?>
+           
 
 
             <input type="text" name="product_name" placeholder="Product Name" required>
@@ -73,50 +68,72 @@ include 'connection.php';
 
 
     <?php
-			if (isset($_POST['add']))
-				{
-                    $product_code = $_POST['product_code'];
-					$product_name = $_POST['product_name'];
-					$product_price = $_POST['product_price'];
-					$product_size = $_POST['product_size'];
-					$brand = $_POST['brand'];
-					$category = $_POST['category'];
-					$qty = $_POST['qty'];
-					$code = rand(0,10000000000000);
-								
+    if (isset($_POST['add'])) {
+        $product_name = $_POST['product_name'];
+        $product_price = $_POST['product_price'];
+        $product_size = $_POST['product_size'];
+        $brand = $_POST['brand'];
+        $category = $_POST['category'];
+        $qty = $_POST['qty'];
+        
+        $err = [];
 
-                    $name = $code.$_FILES['product_image'] ['name'];
-                    $type = $_FILES["product_image"] ["type"];
-                    $size = $_FILES["product_image"] ["size"];
-                    $temp = $_FILES["product_image"] ["tmp_name"];
-                    $error = $_FILES["product_image"] ["error"];
-                
-
-                    if ($error > 0){
-                        die("Error uploading file! Code $error.");}
-                    else
-                    {
-                        if($size > 30000000000) //conditions for the file
-                        {
-                            die("Format is not allowed or file size is too big!");
-                        }
-                        else
-                        {
-                            move_uploaded_file($temp,"uplodeimg/".$name);
-
-
-
-
-				$q1 = mysqli_query($conn, "INSERT INTO product (product_id,product_name, product_price, product_size, product_image, brand, category)
-				VALUES ('$product_name','$product_price','$product_size','$name', '$brand', '$category')");
-				
-                $q2 = mysqli_query($conn, "INSERT INTO stock ( product_id, qty) VALUES ('$product_code','$qty')");
-				
-				header ("location:product.php");
-			}}
+        // Check if file upload is successful
+        if (isset($_FILES['photo']) && $_FILES['photo']['error'] === 0) {
+            // Check file size
+            if ($_FILES['photo']['size'] < 3000000) { // 3 MB (in bytes)
+                // Check file type
+                $allowedTypes = ['image/png', 'image/jpg', 'image/jpeg', 'image/gif'];
+                if (in_array($_FILES['photo']['type'], $allowedTypes)) {
+                    // Move the uploaded file to the desired folder
+                    $uploadDir = 'photo/';
+                    $uploadPath = $uploadDir . basename($_FILES['photo']['name']);
+                    if (move_uploaded_file($_FILES['photo']['tmp_name'], $uploadPath)) {
+                        $photo_name = $_FILES['photo']['name']; // Get the uploaded photo filename
+                        echo "File uploaded successfully.";
+                    } else {
+                        $err['photo'] = "Failed to move uploaded file.";
+                    }
+                } else {
+                    $err['photo'] = "File type not allowed.";
+                }
+            } else {
+                $err['photo'] = "File size exceeds limit (3MB).";
+            }
+        } else {
+            $err['photo'] = "Failed to upload file.";
         }
-		
-				?>
+
+        // Check for any errors
+        if (!empty($err)) {
+            foreach ($err as $error) {
+                echo $error . "<br>";
+            }
+        } else {
+           
+
+            // Insert product details including photo name into product table
+            $sql1 = "INSERT INTO product (product_name, product_price, product_size, brand, category, photo_name)
+                     VALUES ('$product_name','$product_price','$product_size', '$brand', '$category', '$photo_name')";
+            if ($conn->query($sql1) === TRUE) {
+                // Retrieve the last inserted product_id
+                $product_id = $conn->insert_id;
+                
+                // Insert stock details into stock table with corresponding product_id
+                $sql2 = "INSERT INTO stock (product_id, qty) VALUES ('$product_id', '$qty')";
+                if ($conn->query($sql2) === TRUE) {
+                    header("location: product.php");
+                } else {
+                    echo "Error inserting stock details: " . $conn->error;
+                }
+            } else {
+                echo "Error inserting product details: " . $conn->error;
+            }
+
+            $conn->close();
+        }
+    }
+?>
 
 
 
