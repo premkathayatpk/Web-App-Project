@@ -28,7 +28,7 @@ include 'connection.php';
     <div id="add-product" class="hidden productAdd">
         <form method="post" action="">
 
-            <input type="file" name="photo" id="photo"  required/>
+            <input type="file" name="image"   required/>
            
 
             <br>
@@ -37,10 +37,10 @@ include 'connection.php';
 
             <input type="text" name="product_name" placeholder="Product Name" required>
             <br>
-            <input type="text" name="product_price" placeholder="Price" required>
+            <input type="number" name="product_price" placeholder="Price" required>
 
             <br>
-            <input type="text" name="product_size" placeholder="Size" required>
+            <input type="number" name="product_size" placeholder="Size" required>
             <br>
             <input type="text" name="brand" placeholder="Brand Name	" required>
 
@@ -76,45 +76,44 @@ include 'connection.php';
         $category = $_POST['category'];
         $qty = $_POST['qty'];
         
-        $err = [];
+        //insesrt img
+        $filename = $_FILES["image"]["name"];
 
-        // Check if file upload is successful
-        if (isset($_FILES['photo']) && $_FILES['photo']['error'] === 0) {
-            // Check file size
-            if ($_FILES['photo']['size'] < 3000000) { // 3 MB (in bytes)
-                // Check file type
-                $allowedTypes = ['image/png', 'image/jpg', 'image/jpeg', 'image/gif'];
-                if (in_array($_FILES['photo']['type'], $allowedTypes)) {
-                    // Move the uploaded file to the desired folder
-                    $uploadDir = 'photo/';
-                    $uploadPath = $uploadDir . basename($_FILES['photo']['name']);
-                    if (move_uploaded_file($_FILES['photo']['tmp_name'], $uploadPath)) {
-                        $photo_name = $_FILES['photo']['name']; // Get the uploaded photo filename
-                        echo "File uploaded successfully.";
-                    } else {
-                        $err['photo'] = "Failed to move uploaded file.";
-                    }
-                } else {
-                    $err['photo'] = "File type not allowed.";
-                }
-            } else {
-                $err['photo'] = "File size exceeds limit (3MB).";
-            }
-        } else {
-            $err['photo'] = "Failed to upload file.";
+        $tempname = $_FILES["image"]["tmp_name"];  
+    
+            $folder = "uplods/".$filename;   
+           // $sql = "INSERT INTO products (image) VALUES ('$filename')";
+
+            // function to execute above query
+    
+           
+    
+            // Add the image to the "image" folder"
+    
+            if (move_uploaded_file($tempname, $folder)) {
+    
+                $msg = "Image uploaded successfully";
+    
+            }else{
+    
+                $msg = "Failed to upload image";
+    
         }
+    
+    
+    
+   
+    
 
-        // Check for any errors
-        if (!empty($err)) {
-            foreach ($err as $error) {
-                echo $error . "<br>";
-            }
-        } else {
+    
+
            
 
             // Insert product details including photo name into product table
-            $sql1 = "INSERT INTO product (product_name, product_price, product_size, brand, category, photo_name)
-                     VALUES ('$product_name','$product_price','$product_size', '$brand', '$category', '$photo_name')";
+            $sql1 = "INSERT INTO products (product_name, product_price, product_size, brand, category,image)
+                     VALUES ('$product_name','$product_price','$product_size', '$brand', '$category',$filename )";
+                     
+                          mysqli_query($dbname, $sql);   
             if ($conn->query($sql1) === TRUE) {
                 // Retrieve the last inserted product_id
                 $product_id = $conn->insert_id;
@@ -126,13 +125,13 @@ include 'connection.php';
                 } else {
                     echo "Error inserting stock details: " . $conn->error;
                 }
-            } else {
-                echo "Error inserting product details: " . $conn->error;
             }
+            $result = mysqli_query($db, "SELECT * FROM image");
+        }
 
             $conn->close();
-        }
-    }
+        
+    
 ?>
 
 
