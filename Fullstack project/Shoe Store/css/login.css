@@ -6,8 +6,9 @@
 }
 
 body {
-    background: url(images/loginback.png);
+    background-image: url(../images/loginback.png);
     background-size: cover;
+    background-color: green;
 
 
 }
@@ -25,6 +26,11 @@ body {
 
 .register {
     margin-top: 20px;
+}
+
+.head {
+    text-align: center;
+    margin: 50px;
 }
 
 .box {

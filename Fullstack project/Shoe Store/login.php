@@ -7,18 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="css/login.css">
-    <script src="login.js"></script>
 </head>
 
 <body>
     <div class="container login">
         <div class="box form-box">
-            <header>Login</header>
+            <h1 class="head">Login</h1>
             <div class="wrapper">
                 <form action="" method="post">
                     <div class="field  input">
-                        <label for="uname">Username</label>
-                        <input type="text" name="uname" id="uname" placeholder="Username" required>
+                        <label for="uname">Email/Username</label>
+                        <input type="email" name="uname" id="uname" placeholder="Email/Username" required>
                     </div>
 
 
@@ -33,7 +32,7 @@
                     </div>
 
                     <div class="links">
-                        Don't have account? <a href="register.html">Sign Up Now</a>
+                        Don't have account? <a href="register.php">Sign Up Now</a>
                     </div>
                 </form>
             </div>
@@ -42,3 +41,35 @@
 </body>
 
 </html>
+
+<?php include 'admin/connection.php'?>
+
+<?php
+if(isset($_POST['submit'])){
+    $uname= $_POST['uname'];
+    $password = $_POST['password'];
+
+    $sql= "SELECT *from customer where email='$uname' and password ='$password'";
+    
+$result = $conn->query($sql);
+
+if($result -> num_rows>0){
+    //login success
+    echo"success";
+    header("Location: index.php");
+
+    exit();
+}
+else{
+    //login fail
+
+   
+    header("Location: error.php");
+
+    exit();
+}
+}
+
+
+
+?>

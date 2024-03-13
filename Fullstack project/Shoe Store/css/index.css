@@ -5,9 +5,6 @@
   box-sizing: border-box;
 }
 
-body {
-  background-color: whitesmoke;
-}
 
 /* -----------Heading-------------- */
 header {
@@ -183,6 +180,7 @@ header {
 }
 
 .items-container {
+
   width: 90%;
   margin: 30px 5%;
   display: flex;
@@ -194,6 +192,8 @@ header {
 
 
 .item-container {
+  padding: 5px;
+  text-align: center;
   margin-top: 5px;
   width: 180px;
   margin: 5px;

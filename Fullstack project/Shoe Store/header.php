@@ -20,7 +20,7 @@
   <!-- Header section -->
   <header>
     <div class="logo_container">
-      <a href="index.html"><img class="shoe_logo" src="images/logo.png" alt="Logo"></a>
+      <a href="index.php"><img class="shoe_logo" src="images/logo.png" alt="Logo"></a>
     </div>
 
     <div class="search_bar">
@@ -31,12 +31,12 @@
 
 
     <div class="action_bar">
-      <a class="action_container" href="login.html">
+      <a class="action_container" href="login.php">
         <span class="action_name">Login</span>
       </a>
 
 
-      <a class="action_container" href="mycart.html">
+      <a class="action_container" href="mycart.php">
         <i class="fa-solid fa-cart-arrow-down"> <sup><span class="cart-item-count">0</span></sup></i>
         <span class="action_name">My Cart</span>
 
@@ -47,18 +47,19 @@
   <!-- Navbar section -->
   <div class="nav">
     <nav class="nav_bar">
-      <a href="index.html">Home</a>
-      <a href="products.html">Products</a>
-      <a href="men.html">Men</a>
-      <a href="women.html">Women</a>
-      <a href="kids.html">Kids</a>
-      <a href="contactus.html">Contact Us</a>
+      <a href="index.php">Home</a>
+      <a href="products.php">Products</a>
+      <a href="men.php">Men</a>
+      <a href="women.php">Women</a>
+      <a href="kids.php">Kids</a>
+      <a href="contactus.php">Contact Us</a>
     </nav>
     <div class="menu_icon">
       <i class="fa-solid fa-bars"></i>
     </div>
   </div>
 
+  <script src="js/index.js"></script>
 </body>
 
 </html>
