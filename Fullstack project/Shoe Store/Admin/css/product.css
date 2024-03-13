@@ -1,0 +1,96 @@
+/* -------products----------- */
+#product {
+  color: darkblue;
+  text-align: center;
+  margin-top: 10px;
+  padding: 10px 10px 10px 230px;
+  background-color: aquamarine;
+
+}
+
+
+
+.productAdd {
+  position: center;
+  width: 100%;
+  border: none;
+  border-radius: 20px;
+  background-color: gray;
+}
+
+
+.productAdd input {
+  width: 250px;
+  margin: 5px;
+  padding: 5px;
+  font-size: 15px;
+}
+
+.productAdd select {
+  width: 170px;
+  margin: 5px;
+  padding: 5px;
+  font-size: 15px;
+}
+
+
+.add-button input {
+  width: 150px;
+  height: 30px;
+  background-color: blue;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.add-button button {
+  width: 85px;
+  height: 30px;
+  background-color: red;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#toggle-btn {
+  text-align: center;
+  padding: 8px;
+  margin: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: blue;
+  border: none;
+  border-radius: 5px;
+}
+
+.hidden {
+  display: none;
+}
+
+.product-search {
+  margin: 20px;
+  text-align: end;
+
+}
+
+.product-search input {
+  font-size: 15px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid orange;
+}
+
+.product-table,
+.product-table th,
+.product-table tr {
+  margin-top: 20px;
+  border: 2px solid black;
+  padding: 5px;
+}

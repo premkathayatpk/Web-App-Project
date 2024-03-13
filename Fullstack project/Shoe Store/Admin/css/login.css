@@ -3,10 +3,11 @@
     margin: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+
 }
 
 body {
-    background: url(image/loginback.png);
+    background: url(img/loginback.png);
     background-size: cover;
 
 
@@ -16,6 +17,7 @@ body {
 
     display: flex;
     justify-content: center;
+
 
 }
 

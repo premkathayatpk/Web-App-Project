@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="css/login.css">
-    <script src="login.js"></script>
 </head>
 
 <body>
@@ -35,7 +31,7 @@
                         <input type="submit" class="btn" name="submit" value="Login" required>
                     </div>
 
-                    
+
                 </form>
             </div>
         </div>
@@ -60,7 +56,7 @@ $result = $conn->query($query);
 
 if($result -> num_rows == 1){
     //login success
-    header("Location: index.php");
+    header("Location: dashbord.php");
     exit();
 }
 else{
