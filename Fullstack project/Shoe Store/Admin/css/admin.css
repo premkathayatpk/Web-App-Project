@@ -153,10 +153,10 @@
 
 
 /* --------Customer page---------- */
-#customer {
+.customer {
   width: 100%;
   text-align: center;
-  background-color: bisque;
+  background-color: rgb(255, 143, 6);
 
 }
 
@@ -166,18 +166,23 @@
   text-align: center;
   width: 100%;
   margin-top: 20px;
+  background-color: aqua;
 }
 
 
 
 .customer-table th,
-.customer-table tr {
+.customer-table tr,
+.customer-table td {
 
   margin-top: 20px;
   border: 2px solid black;
   padding: 5px;
   width: 100%;
+
 }
+
+
 
 .customer-search {
   margin: 20px;
