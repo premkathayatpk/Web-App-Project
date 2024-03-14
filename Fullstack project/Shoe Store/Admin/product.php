@@ -1,10 +1,9 @@
 <?php
-require 'header.php'
+require ('header.php');
+require_once('connection.php');
 ?>
 
-    <?php
-include 'connection.php';
-?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +16,7 @@ include 'connection.php';
 </head>
 
 <body>
-    <div id="product">
+    <div class="product">
     <h1>Products</h1>
 
 
@@ -26,11 +25,15 @@ include 'connection.php';
 
 
     <div id="add-product" class="hidden productAdd">
-        <form method="post" action="">
+        <form method="post" action="" enctype="multipart/form-data">
 
-            <input type="file" name="image"   required/>
+        <input type="file" name="product_image" require>
            
-
+            <?php include("random_id.php"); 
+							echo '<tr>
+								<td><input type="hidden" name="product_code" value="'.$code.'" required></td>
+							<tr/>';
+							?>
             <br>
            
 
@@ -40,7 +43,7 @@ include 'connection.php';
             <input type="number" name="product_price" placeholder="Price" required>
 
             <br>
-            <input type="number" name="product_size" placeholder="Size" required>
+            <input type="text" name="product_size" placeholder="Size" required>
             <br>
             <input type="text" name="brand" placeholder="Brand Name	" required>
 
@@ -50,11 +53,10 @@ include 'connection.php';
 
 
             Category: <select name="category">
-                <option disabled selected value="">Choose a category</option>
                 <option>Men</option>
                 <option>Women</option>
                 <option>Kids</option>
-                placeholder="none"
+              
             </select>
 
 
@@ -68,70 +70,58 @@ include 'connection.php';
 
 
     <?php
-    if (isset($_POST['add'])) {
-        $product_name = $_POST['product_name'];
-        $product_price = $_POST['product_price'];
-        $product_size = $_POST['product_size'];
-        $brand = $_POST['brand'];
-        $category = $_POST['category'];
-        $qty = $_POST['qty'];
-        
-        //insesrt img
-        $filename = $_FILES["image"]["name"];
+			if (isset($_POST['add']))
+				{
+             
 
-        $tempname = $_FILES["image"]["tmp_name"];  
-    
-            $folder = "uplods/".$filename;   
-           // $sql = "INSERT INTO products (image) VALUES ('$filename')";
+                    // Retrieve form data
+					$product_code = $_POST['product_code'];
+					$product_name = $_POST['product_name'];
+					$product_price = $_POST['product_price'];
+					$product_size = $_POST['product_size'];
+					$brand = $_POST['brand'];
+					$category = $_POST['category'];
+					$qty = $_POST['qty'];
+					$code = rand(0,98987787866533499);
+						
+								 // Handle file upload
+    $name = $code.$_FILES["product_image"]["name"];
+    $temp = $_FILES["product_image"]["tmp_name"];
+    $error = $_FILES["product_image"]["error"];
 
-            // function to execute above query
-    
-           
-    
-            // Add the image to the "image" folder"
-    
-            if (move_uploaded_file($tempname, $folder)) {
-    
-                $msg = "Image uploaded successfully";
-    
-            }else{
-    
-                $msg = "Failed to upload image";
-    
-        }
-    
-    
-    
-   
-    
+    if ($error !== UPLOAD_ERR_OK) {
+        die("Error uploading file! Error code: $error");
+    }
 
-    
+    $upload_dir = "../photo/";
+    $upload_path = $upload_dir . basename($name);
 
-           
+    // Validate file size
+    if ($_FILES["product_image"]["size"] > 3000000) {
+        die("File size is too big!");
+    }
 
-            // Insert product details including photo name into product table
-            $sql1 = "INSERT INTO products (product_name, product_price, product_size, brand, category,image)
-                     VALUES ('$product_name','$product_price','$product_size', '$brand', '$category',$filename )";
-                     
-                          mysqli_query($dbname, $sql);   
-            if ($conn->query($sql1) === TRUE) {
-                // Retrieve the last inserted product_id
-                $product_id = $conn->insert_id;
-                
-                // Insert stock details into stock table with corresponding product_id
-                $sql2 = "INSERT INTO stock (product_id, qty) VALUES ('$product_id', '$qty')";
-                if ($conn->query($sql2) === TRUE) {
-                    header("location: product.php");
-                } else {
-                    echo "Error inserting stock details: " . $conn->error;
-                }
-            }
-            $result = mysqli_query($db, "SELECT * FROM image");
-        }
+    // Move uploaded file
+    if (!move_uploaded_file($temp, $upload_path)) {
+        die("Error moving uploaded file!");
+    }
 
-            $conn->close();
-        
-    
+    // Insert product data into database
+    $q1 = "INSERT INTO product (product_id, product_name, product_price, product_size, product_image, brand, category)
+        VALUES ('$product_code', '$product_name', '$product_price', '$product_size', '$name', '$brand', '$category')";
+
+    $q2 = "INSERT INTO stock (product_id, qty) VALUES ('$product_code', '$qty')";
+
+    if (mysqli_query($conn, $q1) && mysqli_query($conn, $q2)) {
+        header("Location: product.php");
+        exit();
+    } else {
+        die("Error: " . mysqli_error($conn));
+    }
+
+    // Close database connection
+    //mysqli_close($conn);
+}
 ?>
 
 
@@ -142,19 +132,55 @@ include 'connection.php';
     </div>
 
     <div class="product-table">
-        <table>
+        <table border='2px'>
 
             <thead>
                 <tr>
-                    <th>Product Image</th>
+                    <th> Image</th>
                     <th>Product Name</th>
+                    <th>Brand</th>
                     <th>Product Price</th>
                     <th>Product Sizes</th>
+                    <th>Category</th>
+
                     <th>No. of Stock</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
+            <?php
+    $query = mysqli_query($conn, "SELECT * FROM `product` ORDER BY product_id DESC") or die(mysqli_error($conn));
+    while ($fetch = mysqli_fetch_array($query)) {
+        $id = $fetch['product_id'];
+?>
+        <tr class="del<?php echo $id ?>">
+            <td><img class="img-polaroid" src="../photo/<?php echo $fetch['product_image'] ?>" height="70px" width="80px"></td>
+            <td><?php echo $fetch['product_name'] ?></td>
+            <td><?php echo $fetch['brand'] ?></td>
+
+            <td><?php echo $fetch['product_price'] ?></td>
+            <td><?php echo $fetch['product_size'] ?></td>
+            <td><?php echo $fetch['category'] ?></td>
+
+
+            <?php
+            $query1 = mysqli_query($conn, "SELECT * FROM `stock` WHERE product_id='$id'") or die(mysqli_error($conn));
+            $fetch1 = mysqli_fetch_array($query1);
+
+            $qty = $fetch1['qty'];
+            ?>
+
+            <td><?php echo $qty ?></td>
+            <td style="width:220px;">
+                <?php
+                echo "<a href='stockin.php?id=" . $id . "' class='btn btn-success' rel='facebox'><i class='icon-plus-sign icon-white'></i> Stock In</a> ";
+                echo "<a href='stockout.php?id=" . $id . "' class='btn btn-danger' rel='facebox'><i class='icon-minus-sign icon-white'></i> Stock Out</a>";
+                ?>
+            </td>
+        </tr>
+<?php
+    }
+?>
 
 
 
