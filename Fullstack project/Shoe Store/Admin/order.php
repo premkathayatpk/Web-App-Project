@@ -3,12 +3,13 @@ require 'header.php'
 ?>
 
 
-
+<center>
 <h1>Order Lists</h1>
+</center>
             <div class="order-search">
                 <input type="text" placeholder="search product here">
             </div>
-            <table border="1px">
+            <table border="2px">
                 <tr>
                     <th>ID</th>
                     <th>Date</th>
@@ -19,22 +20,34 @@ require 'header.php'
                 </tr>
                 <tr>
                     <td>1</td>
-                    <td>Nike</td>
-                    <td>20</td>
+                    <td>2020</td>
+                    <td>Prem kathayat</td>
+                    <td>2000</td>
+                    <td>conformed</td>
+                    <td>view</td>
                 </tr>
                 <tr>
                     <td>2</td>
+                    <td>2020</td>
                     <td>Anuj Shrestha</td>
-                    <td>50</td>
+                    <td>2000</td>
+                    <td>conformed</td>
+                    <td>view</td>
                 </tr>
                 <tr>
                     <td>3</td>
+                    <td>2020</td>
                     <td>Prem Kathayat</td>
-                    <td>20</td>
+                    <td>2000</td>
+                    <td>conformed</td>
+                    <td>view</td>
                 </tr>
                 <tr>
                     <td>2</td>
+                    <td>2020</td>
                     <td>Anuj Shrestha</td>
-                    <td>50</td>
+                    <td>2000</td>
+                    <td>conformed</td>
+                    <td>view</td>
                 </tr>
             </table>
