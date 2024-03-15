@@ -1,3 +1,5 @@
+<?php require 'header.php'?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,7 +58,7 @@ $result = $conn->query($query);
 
 if($result -> num_rows == 1){
     //login success
-    header("Location: dashbord.php");
+    header("Location: index.php");
     exit();
 }
 else{

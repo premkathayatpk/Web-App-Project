@@ -132,7 +132,7 @@ require_once('connection.php');
     </div>
 
     <div class="product-table">
-        <table border='2px'>
+        <table>
 
             <thead>
                 <tr>
