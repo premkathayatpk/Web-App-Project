@@ -17,7 +17,7 @@
 
   <div class="navbar">
     <div class="nav-logo">
-      <a href="home.php">
+      <a href="index.php">
         <span class="icon">
           <img src="image/logo.png" alt="icone">
         </span>
@@ -27,7 +27,7 @@
     </div>
 
     <div class="nav-items">
-      <a href="dashbord.php">
+      <a href="index.php">
         <span class="icon">
           <i class="fa-solid fa-house"></i> </span>
         Dashboard
