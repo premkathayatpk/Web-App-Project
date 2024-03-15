@@ -1,5 +1,6 @@
 <?php include 'header.php'?>
-
+<?php include 'Admin/connection.php'
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,99 +22,48 @@
 
 
   <!-- Main section -->
-  <!-- Home page -->
-  <div class="home">
-    <div class=" banner_container">
-      <img src="images/banner1.jpg" alt="banner image">
-    </div>
+  <main>
+   <center> <h1>Features Products</h1></center>
+   <Hr></Hr>
+        <div class="items-container">
+        <?php
+ $select_brand = "select *from `product`";
+ $result_brand = mysqli_query($conn,$select_brand);
+while($row_data = mysqli_fetch_assoc($result_brand)){
+  $product_title =  $row_data['product_name'];
+  $product_brand = $row_data['brand'];
+  $product_size = $row_data['product_size'];
+  $product_price =$row_data['product_price'];
+  $product_image =$row_data['product_image'];
+  $product_category =$row_data['category'];
 
 
-    <h1>Feature Items</h1>
-    <hr />
-    <div class="items-container">
+  echo " <div class='item-container'>
+  <img class='item-image' src='photo/$product_image' alt='item image'>
+  <div class='company-name'>$product_brand</div>
+  <div class='item-name'>$product_title</div>
+  <div class='category'>$product_category</div>
 
-      <div class="item-container">
-        <img class="item-image" src="images/photo/1.jpg" alt="item image">
-        <div class="rating"> ⭐ | 1.2k </div>
-        <div class="company-name">Nike</div>
-        <div class="item-name">Jodan Nike</div>
-        <div class="price">
-          Rs. 2500
-        </div>
-        <button class="btn-add-cart" onclick="addToBag(${item.id})">Add to Cart</button>
-      </div>
-
-      <div class="item-container">
-        <img class="item-image" src="images/photo/2.jpg" alt="item image">
-        <div class="rating"> ⭐ | 1.2k </div>
-        <div class="company-name">Nike</div>
-        <div class="item-name">Jodan Nike</div>
-        <div class="price">
-          Rs. 2500
-        </div>
-        <button class="btn-add-cart" onclick="addToBag(${item.id})">Add to Cart</button>
-      </div>
-
-      <div class="item-container">
-        <img class="item-image" src="images/photo/3.jpg" alt="item image">
-        <div class="rating"> ⭐ | 1.2k </div>
-        <div class="company-name">Nike</div>
-        <div class="item-name">Jodan Nike</div>
-        <div class="price">
-          Rs. 2500
-        </div>
-        <button class="btn-add-cart" onclick="addToBag(${item.id})">Add to Cart</button>
-      </div>
-
-      <div class="item-container">
-        <img class="item-image" src="images/photo/4.jpg" alt="item image">
-        <div class="rating"> ⭐ | 1.2k </div>
-        <div class="company-name">Nike</div>
-        <div class="item-name">Jodan Nike</div>
-        <div class="price">
-          Rs. 2500
-        </div>
-        <button class="btn-add-cart" onclick="addToBag(${item.id})">Add to Cart</button>
-      </div>
-
-
-      <div class="item-container">
-        <img class="item-image" src="images/photo/5.jpg" alt="item image">
-        <div class="rating"> ⭐ | 1.2k </div>
-        <div class="company-name">Nike</div>
-        <div class="item-name">Jodan Nike</div>
-        <div class="price">
-          Rs. 2500
-        </div>
-        <button class="btn-add-cart" onclick="addToBag(${item.id})">Add to Cart</button>
-      </div>
-
-
-      <div class="item-container">
-        <img class="item-image" src="images/photo/6.jpg" alt="item image">
-        <div class="rating"> ⭐ | 1.2k </div>
-        <div class="company-name">Nike</div>
-        <div class="item-name">Jodan Nike</div>
-        <div class="price">
-          Rs. 2500
-        </div>
-        <button class="btn-add-cart" onclick="addToBag(${item.id})">Add to Cart</button>
-      </div>
-
-
-      <div class="item-container">
-        <img class="item-image" src="images/photo/7.jpg" alt="item image">
-        <div class="rating"> ⭐ | 1.2k </div>
-        <div class="company-name">Nike</div>
-        <div class="item-name">Jodan Nike</div>
-        <div class="price">
-          Rs. 2500
-        </div>
-        <button class="btn-add-cart" onclick="">Add to Cart</button>
-      </div>
-
-    </div>
+  <div class='size'>
+   Size: $product_size
+</div>
+  <div class='price'>
+    Rs. $product_price
   </div>
+ 
+  <button class='btn-add-cart' onclick=''>Add to Cart</button>
+</div>";
+
+}
+?>
+
+
+        </div>
+
+        
+       
+    </main>
+
   <script src="index.js"></script>
 </body>
 
