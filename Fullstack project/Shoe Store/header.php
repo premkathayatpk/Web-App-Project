@@ -48,7 +48,6 @@
   <div class="nav">
     <nav class="nav_bar">
       <a href="index.php">Home</a>
-      <a href="products.php">Products</a>
       <a href="men.php">Men</a>
       <a href="women.php">Women</a>
       <a href="kids.php">Kids</a>
