@@ -16,58 +16,6 @@ require_once('connection.php');
 </head>
 
 <body>
-    <div class="product">
-    <h1>Products</h1>
-
-
-    <button id="toggle-btn" onclick="toggleProduct()">Add Product</button>
-
-
-
-    <div id="add-product" class="hidden productAdd">
-        <form method="post" action="" enctype="multipart/form-data">
-
-        <input type="file" name="product_image" require>
-           
-            <?php include("random_id.php"); 
-							echo '<tr>
-								<td><input type="hidden" name="product_code" value="'.$code.'" required></td>
-							<tr/>';
-							?>
-            <br>
-           
-
-
-            <input type="text" name="product_name" placeholder="Product Name" required>
-            <br>
-            <input type="number" name="product_price" placeholder="Price" required>
-
-            <br>
-            <input type="text" name="product_size" placeholder="Size" required>
-            <br>
-            <input type="text" name="brand" placeholder="Brand Name	" required>
-
-            <br>
-            <input type="number" name="qty" placeholder="No. of Stock" required>
-            <br>
-
-
-            Category: <select name="category">
-                <option>Men</option>
-                <option>Women</option>
-                <option>Kids</option>
-              
-            </select>
-
-
-            <div class="add-button">
-                <input type="submit" name="add" value="Add">
-
-                <button>Clear</button>
-            </div>
-        </form>
-    </div>
-
 
     <?php
 			if (isset($_POST['add']))
@@ -85,7 +33,7 @@ require_once('connection.php');
 					$code = rand(0,98987787866533499);
 						
 								 // Handle file upload
-    $name = $code.$_FILES["product_image"]["name"];
+    $name = $_FILES["product_image"]["name"];
     $temp = $_FILES["product_image"]["tmp_name"];
     $error = $_FILES["product_image"]["error"];
 
@@ -127,72 +75,133 @@ require_once('connection.php');
 
 
 
-    <div class="product-search">
-        <input type="text" placeholder="search product here">
-    </div>
 
-    <div class="product-table">
-        <table>
+    <!DOCTYPE html>
+    <html lang="en">
 
-            <thead>
-                <tr>
-                    <th> Image</th>
-                    <th>Product Name</th>
-                    <th>Brand</th>
-                    <th>Product Price</th>
-                    <th>Product Sizes</th>
-                    <th>Category</th>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Product Page</title>
+        <link rel="stylesheet" href="css/product.css">
+    </head>
 
-                    <th>No. of Stock</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-            <?php
-    $query = mysqli_query($conn, "SELECT * FROM `product` ORDER BY product_id DESC") or die(mysqli_error($conn));
-    while ($fetch = mysqli_fetch_array($query)) {
-        $id = $fetch['product_id'];
-?>
-        <tr class="del<?php echo $id ?>">
-            <td><img class="img-polaroid" src="../photo/<?php echo $fetch['product_image'] ?>" height="70px" width="80px"></td>
-            <td><?php echo $fetch['product_name'] ?></td>
-            <td><?php echo $fetch['brand'] ?></td>
-
-            <td><?php echo $fetch['product_price'] ?></td>
-            <td><?php echo $fetch['product_size'] ?></td>
-            <td><?php echo $fetch['category'] ?></td>
+    <body>
 
 
-            <?php
-            $query1 = mysqli_query($conn, "SELECT * FROM `stock` WHERE product_id='$id'") or die(mysqli_error($conn));
-            $fetch1 = mysqli_fetch_array($query1);
+        <div class="product">
+            <button id="toggle-btn" onclick="toggleProduct()">Add Product</button>
 
-            $qty = $fetch1['qty'];
-            ?>
+            <div id="add-product" class="hidden productAdd">
+                <form method="post" action="" enctype="multipart/form-data">
 
-            <td><?php echo $qty ?></td>
-            <td style="width:220px;">
-                <?php
-                echo "<a href='stockin.php?id=" . $id . "' class='btn btn-success' rel='facebox'><i class='icon-plus-sign icon-white'></i> Stock In</a> ";
-                echo "<a href='stockout.php?id=" . $id . "' class='btn btn-danger' rel='facebox'><i class='icon-minus-sign icon-white'></i> Stock Out</a>";
-                ?>
-            </td>
-        </tr>
-<?php
-    }
-?>
+                    <input type="file" name="product_image" require>
+
+                    <?php include("random_id.php"); 
+							echo '<tr>
+								<td><input type="hidden" name="product_code" value="'.$code.'" required></td>
+							<tr/>';
+							?>
+                    <br>
 
 
 
+                    <input type="text" name="product_name" placeholder="Product Name" required>
+                    <br>
+                    <input type="number" name="product_price" placeholder="Price" required>
 
-            </tbody>
-            </table>
-    </div>
-    </div>
+                    <br>
+                    <input type="text" name="product_size" placeholder="Size" required>
+                    <br>
+                    <input type="text" name="brand" placeholder="Brand Name	" required>
+
+                    <br>
+                    <input type="number" name="qty" placeholder="No. of Stock" required>
+                    <br>
 
 
+                    Category: <select name="category">
+                        <option>Men</option>
+                        <option>Women</option>
+                        <option>Kids</option>
+
+                    </select>
 
 
-</body>
+                    <div class="add-button">
+                        <input type="submit" name="add" value="Add">
 
-</html>
+                        <button>Clear</button>
+                    </div>
+                </form>
+
+            </div>
+
+            <div class="product-search">
+                <input type="text" placeholder="Search product here">
+            </div>
+
+            <div class="product-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Product Name</th>
+                            <th>Brand</th>
+                            <th>Product Price</th>
+                            <th>Product Sizes</th>
+                            <th>Category</th>
+                            <th>No. of Stock</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                    $query = mysqli_query($conn, "SELECT * FROM `product` ORDER BY product_id DESC") or die(mysqli_error($conn));
+                    while ($fetch = mysqli_fetch_array($query)) {
+                        $id = $fetch['product_id'];
+                    ?>
+                        <tr class="del<?php echo $id ?>">
+                            <td><img class="img-polaroid" src="../photo/<?php echo $fetch['product_image'] ?>"
+                                    height="70px" width="80px"></td>
+                            <td>
+                                <?php echo $fetch['product_name'] ?>
+                            </td>
+                            <td>
+                                <?php echo $fetch['brand'] ?>
+                            </td>
+                            <td>
+                                <?php echo $fetch['product_price'] ?>
+                            </td>
+                            <td>
+                                <?php echo $fetch['product_size'] ?>
+                            </td>
+                            <td>
+                                <?php echo $fetch['category'] ?>
+                            </td>
+                            <?php
+                            $query1 = mysqli_query($conn, "SELECT * FROM `stock` WHERE product_id='$id'") or die(mysqli_error($conn));
+                            $fetch1 = mysqli_fetch_array($query1);
+                            $qty = $fetch1['qty'];
+                            ?>
+                            <td>
+                                <?php echo $qty ?>
+                            </td>
+                            <td style="width:220px;">
+                                <?php
+                                 echo "<a href='Update.php' class='update-btn'></i> Update</a>";
+                                 echo "<a href='Delete.php' class='delect-btn'></i> Delete</a>";
+                               
+                                ?>
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+
+    </html>
