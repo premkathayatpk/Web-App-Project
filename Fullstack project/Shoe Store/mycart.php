@@ -1,74 +1,37 @@
-<?php include 'header.php'?>
+<?php
+session_start();
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
+    // Start or resume session
+    if (!isset($_SESSION['cart'])) {
+        $_SESSION['cart'] = [];
+    }
 
-<!DOCTYPE html>
-<html lang="en">
+    // Get product details from the form submission
+    $title = $_POST['title'];
+    $price = $_POST['price'];
+    $size = $_POST['size'];
+    $brand = $_POST['brand'];
+    $image = $_POST['image'];
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="css/index.css">
+    // Prepare item data
+    $item = [
+        'title' => $title,
+        'price' => $price,
+        'size' => $size,
+        'brand' => $brand,
+        'image' => $image
+    ];
 
-</head>
+    // Add the item to the cart
+    $_SESSION['cart'][] = $item;
 
-<body>
-  <div class="mycart">
-    <h1>My Cart</h1>
-    <form>
-      <table>
-        <tr>
-          <th>Image</th>
-          <th>Product Name</th>
-          <th>Size</th>
-          <th>Quantity</th>
-          <th>Price</th>
-          <th>Add</th>
-          <th>Remove</th>
-          <th>Subtotal</th>
-
-        </tr>
-        <tr>
-          <td><img src="images/women/1.png" alt=""></td>
-          <td>Goldstar</td>
-          <td>8</td>
-          <td>1</td>
-          <td>2500</td>
-          <td>+</td>
-          <td>-</td>
-          <td>2500</td>
-        </tr>
-        <tr>
-          <td><img src="images/men/1.png" alt=""></td>
-          <td>Nike</td>
-          <td>9</td>
-          <td>2</td>
-          <td>3000</td>
-          <td>+</td>
-          <td>-</td>
-          <td>6000</td>
-        </tr>
-      </table>
-      <div class="totalAmount">
-        <h3> Total Amount(Rs): </h3>
-        <button onclick="">Empty Cart</button>
-      </div>
-      <div class='purchase'>
-        <a href='#'>Continue Shopping</a>
-        <button onclick="">Purchase</button>
-      </div>
-
-    </form>
-
-    <div class="bag-page">
-      <div class="bag-items-container">
-      </div>
-      <div class="bag-summary">
-      </div>
-
-    </div>
-  </div>
-</body>
-
-</html>
-<?php include 'footer.php'?>
+    // Redirect back to the page where the item was added from
+    header("Location: {$_SERVER['HTTP_REFERER']}?success=1");
+    exit;
+} else {
+    // Redirect back to the page where the item was added from with an error message
+    header("Location: {$_SERVER['HTTP_REFERER']}?error=1");
+    exit;
+}
+?>
